@@ -1,4 +1,4 @@
-# Signal — Complete Setup & Run Guide
+# Elenchus — Complete Setup & Run Guide
 
 Everything below is free. No paid Slack plan, no credit card, no paid API
 tier required anywhere in this guide.
@@ -14,7 +14,7 @@ If you already did this earlier in the build, skip to Part 2.
    skip inviting teammates.
 
 2. **Create a Slack app**: go to api.slack.com/apps -> "Create New App" ->
-   "From scratch" -> name it (e.g. "Signal") -> pick your new workspace ->
+   "From scratch" -> name it (e.g. "Elenchus") -> pick your new workspace ->
    "Create App".
 
 3. **Enable Socket Mode**: left sidebar -> "Socket Mode" -> toggle on ->
@@ -37,17 +37,17 @@ If you already did this earlier in the build, skip to Part 2.
    a new channel" -> name it `claim-verification` -> public -> Create.
 
 7. **Invite the bot to the channel**: inside the channel, type
-   `/invite @Signal` (use whatever name you gave the app) and press enter.
+   `/invite @Elenchus` (use whatever name you gave the app) and press enter.
    If it doesn't autocomplete, click the channel name -> "Integrations" ->
    "Add apps" -> find your app -> add it.
 
-## Part 2 — Register the manual "Verify with Signal" shortcut (one-time)
+## Part 2 — Register the manual "Verify with Elenchus" shortcut (one-time)
 
 1. Back at api.slack.com/apps -> your app -> "Interactivity & Shortcuts".
 2. Toggle "Interactivity" on. You do NOT need a Request URL, Socket Mode
    covers this.
 3. Scroll to "Shortcuts" -> "Create New Shortcut" -> choose "On messages".
-4. Name: "Verify with Signal". **Callback ID must be exactly**: `verify_message`
+4. Name: "Verify with Elenchus". **Callback ID must be exactly**: `verify_message`
    (this has to match app.py exactly, it's already set correctly in the code).
 5. Add a short description, click "Create".
 6. If Slack prompts you to reinstall the app, do it (OAuth & Permissions ->
@@ -118,7 +118,7 @@ python app.py
 You should see:
 ```
 [app] Monitoring channel #claim-verification (C0XXXXXXX)
-[app] Signal is running. Listening for messages and shortcuts...
+[app] Elenchus is running. Listening for messages and shortcuts...
 ```
 
 If you instead see a `WARNING: could not find channel`, double check the
@@ -137,21 +137,21 @@ mismatch, with Medium or Low confidence.
 Then post something unrelated:
 > anyone free for a call later?
 
-This should get no reply at all. That's correct, not a bug — Signal only
+This should get no reply at all. That's correct, not a bug — Elenchus only
 speaks up when something needs flagging.
 
 To test the manual shortcut: hover over any message -> click the "•••"
-(more actions) icon -> "Verify with Signal" -> it runs a check on demand
+(more actions) icon -> "Verify with Elenchus" -> it runs a check on demand
 and replies in-thread either way (found an issue, or confirmed no issue).
 
 ---
 
 ## Part 6 — Optional: enable the real RTS API (Real-Time Search)
 
-This is optional and separate from everything above -- Signal works fully
+This is optional and separate from everything above -- Elenchus works fully
 without it, using Slack conversation history for evidence. RTS adds
 richer, workspace-wide search, but ONLY activates when someone @-mentions
-the bot directly (e.g. "@Signal we deployed payments yesterday") -- Slack
+the bot directly (e.g. "@Elenchus we deployed payments yesterday") -- Slack
 only issues the required token in that specific case, not for passive
 channel monitoring. This is a real Slack platform constraint, not a
 limitation in this code.
@@ -164,7 +164,7 @@ limitation in this code.
 4. Reinstall the app to your workspace (this is required after adding
    scopes) -> if the Bot Token changes, update your `.env`.
 5. Test it by @-mentioning the bot with a claim in your channel, e.g.:
-   > @Signal we deployed payments yesterday, all good now.
+   > @Elenchus we deployed payments yesterday, all good now.
 
    Check the terminal output for the line `action_token present -- using
    real RTS API for workspace-wide context.` If you see that, RTS is

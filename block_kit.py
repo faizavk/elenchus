@@ -83,7 +83,7 @@ def build_intervention_card(claim_text, verdict_result, external_events, slack_e
             "elements": [
                 {
                     "type": "mrkdwn",
-                    "text": "🔎 Verified automatically by Signal — evidence is model-judged, not guaranteed. Please confirm before acting.",
+                    "text": "🔎 Verified automatically by Elenchus — evidence is model-judged, not guaranteed. Please confirm before acting.",
                 }
             ],
         }

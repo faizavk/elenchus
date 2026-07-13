@@ -1,10 +1,10 @@
 """
-Signal -- main app.
+Elenchus -- main app.
 
 Two entry points into the same verification pipeline:
   1. Automatic: listens to messages in the target channel, classifies each
      one, and investigates anything that looks like a status/decision claim.
-  2. Manual: a "Verify with Signal" message shortcut lets anyone right-click
+  2. Manual: a "Verify with Elenchus" message shortcut lets anyone right-click
      ANY message (a coworker's claim, or Slack AI's own summary/answer) and
      force a check on demand. This is the automated version of what Slack's
      own help docs currently tell users to do by hand when they suspect a
@@ -167,7 +167,7 @@ def handle_message(event, client, say):
 @app.shortcut("verify_message")
 def handle_verify_shortcut(ack, shortcut, client):
     """
-    Manual "Verify with Signal" message shortcut. Lets someone force a check
+    Manual "Verify with Elenchus" message shortcut. Lets someone force a check
     on any message, including Slack AI/Slackbot output, on demand -- the
     automated version of Slack's own manual hallucination-checking advice.
     """
@@ -209,7 +209,7 @@ def handle_verify_shortcut(ack, shortcut, client):
 """if __name__ == "__main__":
     _resolve_target_channel_id()
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
-    print("[app] Signal is running. Listening for messages and shortcuts...")
+    print("[app] Elenchus is running. Listening for messages and shortcuts...")
     handler.start()
 
 #-----------------------------------------
@@ -220,7 +220,7 @@ if __name__ == "__main__":
     # 1. Connect to Slack (handler.connect() automatically runs in the background)
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     handler.connect()
-    print("[app] Signal is running. Listening for messages and shortcuts...", flush=True)
+    print("[app] Elenchus is running. Listening for messages and shortcuts...", flush=True)
 
     # 2. Run the dummy server on the MAIN thread so Render detects the port instantly
     port = int(os.environ.get("PORT", 10000))

@@ -1,9 +1,9 @@
 """
-Real MCP server for Signal.
+Real MCP server for Elenchus.
 
 This is a genuine Model Context Protocol server -- it speaks the actual
 protocol (via the official MCP Python SDK), not a same-process function
-call. It exposes one tool, `search_repo_events`, that Signal's app.py
+call. It exposes one tool, `search_repo_events`, that Elenchus's app.py
 connects to as an MCP client over stdio.
 
 The DATA behind this tool is seeded/mocked (see mock_data.py) standing in
@@ -18,7 +18,7 @@ directly by you. You don't need to start this manually.
 from mcp.server.fastmcp import FastMCP
 from mock_data import query_events
 
-mcp = FastMCP("signal-github-connector")
+mcp = FastMCP("elenchus-github-connector")
 
 
 @mcp.tool()

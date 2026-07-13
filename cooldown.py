@@ -4,7 +4,7 @@ Cooldown tracker.
 Notification fatigue is the single most-cited Slack complaint by volume
 (1,137+ mentions on G2, and cited as a top-10 business pain point across
 148,000+ analyzed complaints). A proactive agent that re-fires on the same
-topic repeatedly would make that problem worse, not better -- so Signal
+topic repeatedly would make that problem worse, not better -- so Elenchus
 tracks which topics it has already flagged recently and stays quiet on
 repeats within the cooldown window.
 

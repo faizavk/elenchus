@@ -7,7 +7,7 @@ Calls the actual assistant.search.context method. Important, real constraint
 messages does NOT receive one. So this is a genuine enhancement, not a
 replacement for the existing conversations_history-based evidence gathering:
 
-  - If someone writes "@Signal we deployed payments yesterday" -- an
+  - If someone writes "@Elenchus we deployed payments yesterday" -- an
     action_token is present, and this module gets called to pull richer,
     workspace-wide context via the real RTS API.
   - If someone just posts "we deployed payments yesterday" with no mention --

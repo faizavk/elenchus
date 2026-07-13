@@ -1,4 +1,4 @@
-# Signal — Slack Claim Verification Agent
+# Elenchus — Slack Claim Verification Agent
 
 Monitors one Slack channel for status/decision claims ("we deployed X",
 "we finished Y") and checks them against recent Slack context plus a
@@ -6,7 +6,7 @@ GitHub/deployment data source, retrieved over a real MCP (Model Context
 Protocol) connection. The underlying repo/deployment data is seeded for
 this sandbox demo, but the connection itself is a genuine MCP server and
 client talking the actual protocol, not a same-process function call. If
-Signal finds a contradiction or can't confirm the claim, it posts an
+Elenchus finds a contradiction or can't confirm the claim, it posts an
 evidence-based intervention card in the thread. If the claim checks out,
 it stays silent.
 
@@ -16,10 +16,10 @@ it stays silent.
   to the source message instead of just quoting it, so you don't have to
   remember what to search for later (this was a specifically documented,
   heavily-cited Slack complaint).
-- **Cooldown to prevent notification spam** -- Signal won't re-flag the same
+- **Cooldown to prevent notification spam** -- Elenchus won't re-flag the same
   topic within 30 minutes, directly addressing notification fatigue, the
   single most-cited Slack complaint by volume.
-- **"Verify with Signal" manual message shortcut** -- right-click ANY message
+- **"Verify with Elenchus" manual message shortcut** -- right-click ANY message
   to force a check on demand, including Slack AI/Slackbot output if your
   workspace has it. Slack's own help docs currently tell users to manually
   ask Slackbot again or provide more specific sources when they suspect a
@@ -30,12 +30,12 @@ it stays silent.
 1. Go to your app at api.slack.com/apps -> your app -> **Interactivity & Shortcuts**.
 2. Toggle **Interactivity** on (Socket Mode means you don't need a Request URL).
 3. Scroll to **Shortcuts** -> **Create New Shortcut** -> choose **On messages**.
-4. Name it "Verify with Signal", set the **Callback ID** to exactly `verify_message`
+4. Name it "Verify with Elenchus", set the **Callback ID** to exactly `verify_message`
    (must match what's in app.py), add a short description, save.
 5. Reinstall the app to your workspace if prompted (Slack sometimes requires this
    after adding a shortcut).
 6. In Slack, hover any message -> click the "More actions" (•••) icon -> you
-   should see "Verify with Signal" in the list.
+   should see "Verify with Elenchus" in the list.
 
 ## Setup
 
@@ -64,7 +64,7 @@ it stays silent.
    ```
    python app.py
    ```
-   You should see: `[app] Signal is running. Listening for messages...`
+   You should see: `[app] Elenchus is running. Listening for messages...`
 
 ## Testing it
 
