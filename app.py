@@ -206,14 +206,14 @@ def handle_verify_shortcut(ack, shortcut, client):
         )
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     _resolve_target_channel_id()
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     print("[app] Signal is running. Listening for messages and shortcuts...")
     handler.start()
 
 #-----------------------------------------
-
+"""
 if __name__ == "__main__":
     _resolve_target_channel_id()
     
