@@ -21,6 +21,28 @@ Pipeline for both paths:
 
 Run with: python app.py
 """
+import os
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
+# --- Dummy HTTP Server for Render Free Tier Health Checks ---
+class HealthCheckHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"Elenchus is alive!")
+
+    def log_message(self, format, *args):
+        # Mute standard logging to keep Render terminal logs clean
+        return
+
+def run_health_check_server():
+    port = int(os.environ.get("PORT", 8080))
+    server = HTTPServer(("0.0.0.0", port), HealthCheckHandler)
+    print(f"[HealthCheck] Dummy server listening on port {port}...")
+    server.serve_forever()
+# ------------------------------------------------------------
 
 import os
 from dotenv import load_dotenv
@@ -185,6 +207,18 @@ def handle_verify_shortcut(ack, shortcut, client):
 
 
 if __name__ == "__main__":
+    _resolve_target_channel_id()
+    handler = SocketModeHandler(app, SLACK_APP_TOKEN)
+    print("[app] Signal is running. Listening for messages and shortcuts...")
+    handler.start()
+
+#-----------------------------------------
+
+if __name__ == "__main__":
+    # 1. Start the fake web server in a daemon thread so Render can complete port verification
+    threading.Thread(target=run_health_check_server, daemon=True).start()
+
+    # 2. Run your original channel resolution and Socket Mode startup logic
     _resolve_target_channel_id()
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     print("[app] Signal is running. Listening for messages and shortcuts...")
