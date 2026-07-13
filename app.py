@@ -215,11 +215,15 @@ if __name__ == "__main__":
 #-----------------------------------------
 
 if __name__ == "__main__":
-    # 1. Start the fake web server in a daemon thread so Render can complete port verification
-    threading.Thread(target=run_health_check_server, daemon=True).start()
-
-    # 2. Run your original channel resolution and Socket Mode startup logic
     _resolve_target_channel_id()
+    
+    # 1. Connect to Slack (handler.connect() automatically runs in the background)
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
-    print("[app] Signal is running. Listening for messages and shortcuts...")
-    handler.start()
+    handler.connect()
+    print("[app] Signal is running. Listening for messages and shortcuts...", flush=True)
+
+    # 2. Run the dummy server on the MAIN thread so Render detects the port instantly
+    port = int(os.environ.get("PORT", 10000))
+    print(f"[HealthCheck] Binding to port {port}...", flush=True)
+    server = HTTPServer(("0.0.0.0", port), HealthCheckHandler)
+    server.serve_forever()
